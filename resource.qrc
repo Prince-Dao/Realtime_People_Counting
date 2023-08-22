@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="settingsIcon">
+    <file>settings.png</file>
+    <file>settingss.png</file>
+  </qresource>
+</RCC>

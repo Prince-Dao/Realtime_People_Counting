@@ -1,0 +1,52 @@
+# YOLOv8n .yaml file
+
+nc: 1  # number of classes
+names: ["person"]
+
+train: ./train.txt
+val: ./val.txt
+
+# Model architecture
+backbone:
+  # Choose from ['CSPDarknet53', 'EfficientNet', 'DenseNet', 'Darknet', 'MobileNetV3', 'VoVNet']
+  name: 'Darknet'
+  # Model depth, multiples of 3
+  depth_multiple: 1.0
+  # Channel multiplier
+  width_multiple: 1.0
+  # Use non-default anchors
+  anchors:
+    - [10,13, 16,30, 33,23]  # P3/8
+    - [30,61, 62,45, 59,119]  # P4/16
+    - [116,90, 156,198, 373,326]  # P5/32
+
+# Model head
+head:
+  # Choose from ['YOLOv5', 'YOLOv3', 'YOLOv3-SPP', 'YOLOv3-tiny', 'YOLOv4-tiny', 'YOLOv5-tiny', 'PicoDet']
+  name: 'YOLOv8n'
+  # Number of YOLO layers
+  n_yolo_layers: 3
+  # YOLO layer anchors
+  anchors:
+    - [10,14, 23,27, 37,58]
+    - [81,82, 135,169, 344,319]
+    - [0,0, 0,0, 0,0]
+  # YOLO layer scales
+  scales: 1.2, 1.1, 1.05
+  # YOLO layer depth multiplier
+  depth_multiple: 1.0
+
+# Train options
+train_options:
+  # Learning rate
+  lr0: 0.01
+  # Batch size
+  batch_size: 16
+  # Subdivisions
+  subdivisions: 8
+  # Number of epochs
+  epochs: 300
+  # Image augmentation
+  augment: true
+  # Use pre-trained weights
+  pretrained_weights: ''
